@@ -11,7 +11,7 @@
 
 ### 中间件
 
-- MySQL
+- [MySQL](mysql)
 - Redis
 - Kafka
 - Elasticsearch
@@ -22,3 +22,4 @@
 ## 通用技能
 
 - [写给工程师的十条精进原则](https://tech.meituan.com/2018/08/16/10-principles-for-engineers.html)
+- [知道创宇研发技能表-通用技能](https://rd.readthedocs.io/comm/index.html)
