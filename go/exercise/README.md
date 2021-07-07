@@ -34,3 +34,17 @@ a: [1]
 参考: [The hidden risk of passing slice as function parameter](https://www.pixelstech.net/article/1607859246-The-hidden-risk-of-passing-slice-as-function-parameter)
 
 </details>
+
+## 问题 2
+
+修改slice中元素的属性
+```go
+type Question struct {
+	Name string
+	Answer string
+}
+
+// 实现addPrefix，把questions中Name加上前缀`meiqia`
+func addPrefix(questions []Question) {
+}
+```
