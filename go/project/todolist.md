@@ -12,6 +12,10 @@
 - 设计出表结构
 - 设计所有需要的api接口，遵循[restful风格](http://www.ruanyifeng.com/blog/2014/05/restful_api.html)
 - 代码实现
+    + 执行以下命令
+        - go fmt
+        - [goimports](https://pkg.go.dev/golang.org/x/tools/cmd/goimports)
+        - [golangci-lint](https://golangci-lint.run/) run
 
 ### 依赖库
 - https://github.com/go-chi/chi
