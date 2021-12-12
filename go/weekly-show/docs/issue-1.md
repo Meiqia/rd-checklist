@@ -1,3 +1,3 @@
-# Kun v0.4.0 的新特性
+# Go 服务通信工具 Kun
 
-https://github.com/RussellLuo/kun
+http://russellluo.com/2021/12/kun.html
