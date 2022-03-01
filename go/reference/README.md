@@ -13,6 +13,7 @@
 - [Effective Go](https://golang.org/doc/effective_go.html)
 - [FAQ](https://golang.org/doc/faq)
 - [Go Code Review Comments](https://github.com/golang/go/wiki/CodeReviewComments)
+- [Awesome Go Style](https://github.com/dgryski/awesome-go-style)
 - [Uber Go Style Guide](https://github.com/uber-go/guide/blob/master/style.md)
 
 ## 进阶
@@ -32,6 +33,7 @@
 测试：
 
 - [Advanced Testing with Go](https://speakerdeck.com/mitchellh/advanced-testing-with-go)
+- [Testing in Go: Golden Files](https://ieftimov.com/posts/testing-in-go-golden-files/)
 - [Where is my favorite helper function for testing?](https://golang.org/doc/faq#testing_framework)
 - [Structuring Tests in Go](https://medium.com/@benbjohnson/structuring-tests-in-go-46ddee7a25c)
 
