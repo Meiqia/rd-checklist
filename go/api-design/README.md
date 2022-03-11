@@ -1,5 +1,17 @@
 # API 设计指南
 
+## 目录
+
+- [概念](#概念)
+- [资源名称](#资源名称)
+    - [资源集合用复数名](#资源集合用复数名)
+    - [单个资源用 ID 标识](#单个资源用-id-标识)
+    - [资源单例用单数名](#资源单例用单数名)
+- [标准方法](#标准方法)
+- [自定义方法](#自定义方法)
+- [参考资料](#参考资料)
+
+
 ## 概念
 
 - Tenant：租户
@@ -7,6 +19,7 @@
 - Message：消息
 - Visitor：访客
 - Agent：客服
+
 
 ## 资源名称
 
@@ -33,12 +46,12 @@
 | 当前客服接待的对话集合 | /agent/conversations | /agents/me/conversations |
 | 当前客服在某条对话中的回复消息集合 | /agent/conversation/messages | /agents/me/conversations/{convID}/messages |
 
-
 ### 资源单例用单数名
 
 | 资源 | Bad | Good |
 | --- | --- | --- |
 | 对话的接待客服（一条对话只有一个接待客服） | /tenant/conversation/agent | /tenants/{tenantID}/conversations/{convID}/agent |
+
 
 ## 标准方法
 
@@ -53,6 +66,7 @@
 备注：
 
 - 创建/更新资源通常返回 200；如果不需要返回已创建/已更新的资源内容，也可以返回 204（响应体为空）。
+
 
 ## 自定义方法
 
