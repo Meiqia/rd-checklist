@@ -1,5 +1,10 @@
 # Go
 
+- [API 设计指南](api-design)
+- Go 编码规范
+
+其他:
+
 - [参考资料](reference)
 - [练习题](exercise)
 - [项目实战](project)
