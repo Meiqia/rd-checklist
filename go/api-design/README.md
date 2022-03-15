@@ -6,7 +6,7 @@
 - [资源名称](#资源名称)
     - [资源集合用复数名](#资源集合用复数名)
     - [单个资源用 ID 标识](#单个资源用-id-标识)
-    - [资源单例用单数名](#资源单例用单数名)
+    - [资源单例用单数名](#资源单例用单数名或复数名)
 - [标准方法](#标准方法)
     - [集合资源](#集合资源)
     - [单例资源](#单例资源)
@@ -48,11 +48,12 @@
 | 当前客服接待的对话集合 | /agent/conversations | /agents/me/conversations |
 | 当前客服在某条对话中的回复消息集合 | /agent/conversation/messages | /agents/me/conversations/{convID}/messages |
 
-### 资源单例用单数名
+### 资源单例用单数名或复数名
 
 | 资源 | Bad | Good |
 | --- | --- | --- |
 | 对话的接待客服（一条对话只有一个接待客服） | /tenant/conversation/agent | /tenants/{tenantID}/conversations/{convID}/agent |
+| 客服的个人设置（一个客服只有一套个人设置） | /agent/settings | /agents/{agentID}/settings |
 
 
 ## 标准方法
@@ -93,13 +94,14 @@
 
 如果某些操作场景，用标准方法表达起来不够自然，那可以选择自定义方法。
 
-典型场景：
+典型场景（[参考](https://cloud.google.com/apis/design/custom_methods)）：
 
 | 场景 | 函数方法 | 示例 |
 | --- | --- | --- |
 | 批量获取 | BatchGet | GET /conversations:batchGet |
 | 发邮件 | SendMail | POST /operations:sendMail |
 | 复杂查询 | Search | POST /conversations:search |
+| 复制 | copy | POST /settings:copy |
 
 
 ## 参考资料
