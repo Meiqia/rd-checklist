@@ -6,7 +6,9 @@
 - [资源名称](#资源名称)
     - [资源集合用复数名](#资源集合用复数名)
     - [单个资源用 ID 标识](#单个资源用-id-标识)
-    - [资源单例用单数名](#资源单例用单数名或复数名)
+        - [已鉴权用户](#已鉴权用户)
+        - [多种格式的资源 ID](#多种格式的资源-id)
+    - [资源单例用单数名或复数名](#资源单例用单数名或复数名)
 - [标准方法](#标准方法)
     - [集合资源](#集合资源)
     - [单例资源](#单例资源)
@@ -40,13 +42,24 @@
 | 租户下的一条对话 | /tenant/conversation | /tenants/{tenantID}/conversations/{convID} |
 | 对话中的一条消息 | /tenant/conversation/message | /tenants/{tenantID}/conversations/{convID}/messages/{messageID} |
 
-**特别地**：对于已鉴权用户，URI 可以使用 me 作为资源 ID（[参考1](https://developers.google.com/gmail/api/reference/rest/v1/users.messages.attachments/get#path-parameters)、[参考2](https://softwareengineering.stackexchange.com/questions/273348/should-i-specify-the-userid-in-the-rest-url-structure)、[参考3](https://stackoverflow.com/questions/35719797/is-using-magic-me-self-resource-identifiers-going-against-rest-principles)）。
+#### 已鉴权用户
+
+对于已鉴权用户，URI 可以使用 me 作为资源 ID（[参考1](https://developers.google.com/gmail/api/reference/rest/v1/users.messages.attachments/get#path-parameters)、[参考2](https://softwareengineering.stackexchange.com/questions/273348/should-i-specify-the-userid-in-the-rest-url-structure)、[参考3](https://stackoverflow.com/questions/35719797/is-using-magic-me-self-resource-identifiers-going-against-rest-principles)）。
 
 | 资源 | Bad | Good |
 | --- | --- | --- |
 | 当前客服所属租户 | /tenant | /tenants/me |
 | 当前客服接待的对话集合 | /agent/conversations | /agents/me/conversations |
 | 当前客服在某条对话中的回复消息集合 | /agent/conversation/messages | /agents/me/conversations/{convID}/messages |
+
+#### 多种格式的资源 ID
+
+有时候，我们想支持多种风格的资源定位方式，比如可以根据 name 或 id 定位资源，此时资源 ID 可以是多种格式的（[参考](https://docs.konghq.com/gateway/2.7.x/admin-api/#retrieve-service)）。
+
+| 资源 | Bad | Good |
+| --- | --- | --- |
+| 根据 name 或 id 定位单个租户 | /tenant?name=xx&id=yy | /tenants/{name or id} |
+| 根据 name 或 id 定位单个客服 | /agent?name=xx&id=yy | /agents/{name or id} |
 
 ### 资源单例用单数名或复数名
 
