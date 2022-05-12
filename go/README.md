@@ -1,7 +1,7 @@
 # Go
 
-- [API 设计指南](api-design)
 - [Go 编码规范](style-guide)
+- [API 设计指南](api-design)
 
 其他:
 
