@@ -3,6 +3,7 @@
 ## 目录
 
 - [Empty string check](#empty-string-check)
+- [Interfaces](#interfaces)
 - [Error strings](#error-strings)
 - [Handle errors](#handle-errors)
 - [Imports](#imports)
@@ -11,7 +12,7 @@
 - [Use consistent spelling of certain words](#use-consistent-spelling-of-certain-words)
 
 
-## Emtpy string check
+## Empty string check
 
 Do this:
 
@@ -30,6 +31,55 @@ if len(s) == 0 {
 ```
 
 参考: https://dmitri.shuralyov.com/idiomatic-go#empty-string-check.
+
+
+## Interfaces
+
+Do this:
+
+```go
+package consumer
+
+type Thinger interface { Thing() bool }
+
+func Foo(t Thinger) string { … }
+```
+
+```go
+package producer
+
+type DefaultThinger struct{ … }
+func (t *DefaultThinger) Thing() bool { … }
+
+func NewDefaultThinger() *DefaultThinger { return &DefaultThinger{ … } }
+
+// Interface guards
+var _ consumer.Thinger = (*DefaultThinger)(nil)
+```
+
+Don't do this:
+
+```go
+package producer
+
+type Thinger interface { Thing() bool }
+
+type defaultThinger struct{ … }
+func (t *defaultThinger) Thing() bool { … }
+
+func NewThinger() Thinger { return &defaultThinger{ … } }
+```
+
+说明:
+
+- Interface 定义应该出现在使用的地方, 而不是实现的地方
+- Interface 实现应该返回具体类型（通常是指针或结构体）
+- 使用 Interface guards 可以在编译期间保证 Interface 接口实现的完整性
+
+参考:
+
+- https://github.com/golang/go/wiki/CodeReviewComments#interfaces
+- https://github.com/uber-go/guide/blob/master/style.md#verify-interface-compliance
 
 
 ## Error strings
