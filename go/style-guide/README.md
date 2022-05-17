@@ -10,6 +10,7 @@
 - [Goroutine lifetimes](#goroutine-lifetimes)
 - [In-band errors](#in-band-errors)
 - [Use consistent spelling of certain words](#use-consistent-spelling-of-certain-words)
+- [Slice append](#slice-append)
 
 
 ## Empty string check
@@ -279,3 +280,25 @@ Don't do this:
 ```
 
 参考: https://dmitri.shuralyov.com/idiomatic-go#use-consistent-spelling-of-certain-words.
+
+## Slice append
+
+Do this:
+
+```api
+sa := []string{"a","b","c"}
+sb := []string{"d","e"}
+sa = append(sa,sb...)
+```
+
+Don't do this
+
+```api
+sa := []string{"a","b","c"}
+sb := []string{"d","e"}
+for _,item := range sb {
+    sa = append(sa,sb)
+}
+```
+
+参考: #slice-append.
