@@ -12,6 +12,7 @@
 - [Goroutine lifetimes](#goroutine-lifetimes)
 - [In-band errors](#in-band-errors)
 - [Use consistent spelling of certain words](#use-consistent-spelling-of-certain-words)
+<<<<<<< HEAD
 - [Group similar declarations](#group-similar-declarations)
 - [Reduce scope of variables](#reduce-scope-of-variables)
 - [Unnecessary else](#unnecessary-else)
@@ -34,6 +35,9 @@ Don't do this: `str_conv` `strConv`
 参考:
 - https://blog.golang.org/package-names
 - https://rakyll.org/style-packages/
+=======
+- [Slice append](#slice-append)
+>>>>>>> aa4e191 (add slice append)
 
 
 ## Empty string check
@@ -390,3 +394,25 @@ if b {
 ```
 
 参考：https://github.com/uber-go/guide/blob/master/style.md#unnecessary-else
+
+## Slice append
+
+Do this:
+
+```api
+sa := []string{"a","b","c"}
+sb := []string{"d","e"}
+sa = append(sa,sb...)
+```
+
+Don't do this
+
+```api
+sa := []string{"a","b","c"}
+sb := []string{"d","e"}
+for _,item := range sb {
+    sa = append(sa,sb)
+}
+```
+
+参考: #slice-append.
