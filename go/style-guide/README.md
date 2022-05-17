@@ -279,3 +279,18 @@ Don't do this:
 ```
 
 参考: https://dmitri.shuralyov.com/idiomatic-go#use-consistent-spelling-of-certain-words.
+
+
+## scale function
+
+
+每行代码不超过 100 个字符。
+函数不超过 100 行。
+
+说明：函数/文件太长一般说明函数定义不明确/程序结构划分不合理，不利于维护
+
+
+## clear field meaning
+
+入参和返回值的字段有明确含义,例如：为空则代表值为空，不为空就是有明确意义。
+
