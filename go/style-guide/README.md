@@ -286,19 +286,17 @@ Don't do this:
 Do this:
 
 ```api
-sa := []string{"a","b","c"}
-sb := []string{"d","e"}
-sa = append(sa,sb...)
+sa := []string{"a", "b", "c"}
+sb := []string{"d", "e"}
+sa = append(sa, sb...)
 ```
 
 Don't do this
 
 ```api
-sa := []string{"a","b","c"}
-sb := []string{"d","e"}
-for _,item := range sb {
-    sa = append(sa,sb)
+sa := []string{"a", "b", "c"}
+sb := []string{"d", "e"}
+for _, item := range sb {
+    sa = append(sa, sb)
 }
 ```
-
-参考: #slice-append.
