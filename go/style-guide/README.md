@@ -10,6 +10,7 @@
 - [Goroutine lifetimes](#goroutine-lifetimes)
 - [In-band errors](#in-band-errors)
 - [Use consistent spelling of certain words](#use-consistent-spelling-of-certain-words)
+- [left-aligned happy path](#left-aligned happy path)
 
 
 ## Empty string check
@@ -279,3 +280,70 @@ Don't do this:
 ```
 
 参考: https://dmitri.shuralyov.com/idiomatic-go#use-consistent-spelling-of-certain-words.
+
+## left-aligned happy path
+
+Do this:
+
+```go
+func doSomething() error {
+	if errorCondition1 {
+		// some error logic
+		... ...
+		return err1
+	}
+
+	// some success logic
+	... ...
+
+	if errorCondition2 {
+		// some error logic
+		... ...
+		return err2
+	}
+
+	// some success logic
+	... ...
+	return nil
+}
+```
+
+Don't do this:
+
+```go
+func doSomething() error {
+	if successCondition1 {
+		// some success logic
+		... ...
+
+		if successCondition2 {
+			// some success logic
+			... ...
+
+			return nil
+		} else {
+			// some error logic
+			... ...
+			return err2
+		}
+	} else {
+		// some error logic
+		... ...
+		return err1
+	}
+}
+```
+
+说明:
+
+- 仅使用单分支控制结构
+- 当布尔表达式求值为 false 时，也就是出现错误时，在单分支中快速返回
+- 正常逻辑在代码布局上始终“靠左”，这样读者可以从上到下一眼看到该函数正常逻辑的全貌
+- 函数执行到最后一行代表一种成功状态
+
+参考: https://time.geekbang.org/column/article/447723.
+
+
+
+
+
