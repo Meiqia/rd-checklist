@@ -3,7 +3,7 @@
 ## 目录
 
 - [Prefer to struct](#prefer-to-struct)
-- [Package Naming](#package-naming)
+- [Package naming](#package-naming)
 - [Empty string check](#empty-string-check)
 - [Interfaces](#interfaces)
 - [Error strings](#error-strings)
@@ -12,16 +12,19 @@
 - [Goroutine lifetimes](#goroutine-lifetimes)
 - [In-band errors](#in-band-errors)
 - [Use consistent spelling of certain words](#use-consistent-spelling-of-certain-words)
-- [Group Similar Declarations](#group-similar-declarations)
-- [Reduce Scope of Variables](#reduce-scope-of-variables)
-- [Unnecessary Else](#unnecessary-else)
+- [Group similar declarations](#group-similar-declarations)
+- [Reduce scope of variables](#reduce-scope-of-variables)
+- [Unnecessary else](#unnecessary-else)
 
 
 ## Prefer to struct
 
 golang是一门静态语言，避免使用通用型`map[string]interface{}`，能用结构体的地方都用结构体
 
-## Package Naming
+## Package naming
+
+Do this: `strconv`
+Don't do this: `str_conv` `strConv`
 
 - 全部小写，没有大写或下划线
 - 大多数使用命名导入的情况下，不需要重命名
@@ -302,7 +305,7 @@ Don't do this:
 参考: https://dmitri.shuralyov.com/idiomatic-go#use-consistent-spelling-of-certain-words.
 
 
-## Group Similar Declarations
+## Group similar declarations
 
 Do this:
 ```go
@@ -329,25 +332,9 @@ var b = 2
 参考: https://github.com/uber-go/guide/blob/master/style.md#group-similar-declarations
 
 
-## Reduce Scope of Variables
+## Reduce scope of variables
 
-如果返回只有一个err，用一行；如果有多个，换行处理err
 Do this:
-```go
-if data, err := ioutil.ReadFile(name); err == nil {
-	err = cfg.Decode(data)
-  	if err != nil {
-    	return err
-  	}
-
-	fmt.Println(cfg)
-	return nil
-} else {
-	return err
-}
-```
-
-Don't do this:
 ```go
 data, err := ioutil.ReadFile(name)
 if err != nil {
@@ -362,10 +349,27 @@ fmt.Println(cfg)
 return nil
 ```
 
+Don't do this:
+```go
+if data, err := ioutil.ReadFile(name); err == nil {
+	err = cfg.Decode(data)
+  	if err != nil {
+		return err
+  	}
+
+	fmt.Println(cfg)
+	return nil
+} else {
+	return err
+}
+```
+
+如果返回只有一个err，用一行；如果有多个，换行处理err
+
 参考: https://github.com/uber-go/guide/blob/master/style.md#reduce-scope-of-variables
 
 
-## Unnecessary Else
+## Unnecessary else
 
 Do this:
 ```go
