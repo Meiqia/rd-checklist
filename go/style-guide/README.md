@@ -2,6 +2,8 @@
 
 ## 目录
 
+- [Prefer to struct](#prefer-to-struct)
+- [Package naming](#package-naming)
 - [Empty string check](#empty-string-check)
 - [Interfaces](#interfaces)
 - [Error strings](#error-strings)
@@ -10,6 +12,28 @@
 - [Goroutine lifetimes](#goroutine-lifetimes)
 - [In-band errors](#in-band-errors)
 - [Use consistent spelling of certain words](#use-consistent-spelling-of-certain-words)
+- [Group similar declarations](#group-similar-declarations)
+- [Reduce scope of variables](#reduce-scope-of-variables)
+- [Unnecessary else](#unnecessary-else)
+
+
+## Prefer to struct
+
+golang是一门静态语言，避免使用通用型`map[string]interface{}`，能用结构体的地方都用结构体
+
+## Package naming
+
+Do this: `strconv`
+Don't do this: `str_conv` `strConv`
+
+- 全部小写，没有大写或下划线
+- 大多数使用命名导入的情况下，不需要重命名
+- 简短而简洁
+- 不用复数
+
+参考:
+- https://blog.golang.org/package-names
+- https://rakyll.org/style-packages/
 
 
 ## Empty string check
@@ -279,3 +303,90 @@ Don't do this:
 ```
 
 参考: https://dmitri.shuralyov.com/idiomatic-go#use-consistent-spelling-of-certain-words.
+
+
+## Group similar declarations
+
+Do this:
+```go
+const (
+	a = 1
+	b = 2
+)
+
+var (
+	a = 1
+	b = 2
+)
+```
+
+Don't do this:
+```go
+const a = 1
+const b = 2
+
+var a = 1
+var b = 2
+```
+
+参考: https://github.com/uber-go/guide/blob/master/style.md#group-similar-declarations
+
+
+## Reduce scope of variables
+
+Do this:
+```go
+data, err := ioutil.ReadFile(name)
+if err != nil {
+	return err
+}
+
+if err := cfg.Decode(data); err != nil {
+	return err
+}
+
+fmt.Println(cfg)
+return nil
+```
+
+Don't do this:
+```go
+if data, err := ioutil.ReadFile(name); err == nil {
+	err = cfg.Decode(data)
+  	if err != nil {
+		return err
+  	}
+
+	fmt.Println(cfg)
+	return nil
+} else {
+	return err
+}
+```
+
+如果返回只有一个err，用一行；如果有多个，换行处理err
+
+参考: https://github.com/uber-go/guide/blob/master/style.md#reduce-scope-of-variables
+
+
+## Unnecessary else
+
+Do this:
+```go
+a := 10
+if b {
+	a = 100
+}
+```
+
+Don't do this:
+```go
+var a int
+if b {
+	a = 100
+} else {
+	a = 10
+}
+```
+
+参考：https://github.com/uber-go/guide/blob/master/style.md#unnecessary-else
