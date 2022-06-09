@@ -281,16 +281,37 @@ Don't do this:
 参考: https://dmitri.shuralyov.com/idiomatic-go#use-consistent-spelling-of-certain-words.
 
 
-## scale function
+## 自定义类型的string循环问题
+
+如果自定义的类型定义了String方法，那么在打印的时候会产生隐藏的一些bug
+
+Do this:
+
+```
+func(m MyInt) String() string { 
+    return fmt.Sprint(int(m))   //这是安全的,因为我们内部进行了类型转换
+}
+```
+
+Don't do this:
+
+```
+type MyInt int
+func (m MyInt) String() string { 
+    return fmt.Sprint(m)   //BUG:死循环
+}
+```
 
 
-每行代码不超过 100 个字符。
-函数不超过 100 行。
-
-说明：函数/文件太长一般说明函数定义不明确/程序结构划分不合理，不利于维护
 
 
-## clear field meaning
+## 在逻辑处理中禁用panic
 
-入参和返回值的字段有明确含义,例如：为空则代表值为空，不为空就是有明确意义。
+在main包中只有当实在不可运行的情况采用panic，例如文件无法打开，数据库无法连接导致程序无法
+正常运行，但是对于其他的package对外的接口不能有panic，只能在包内采用。
 
+强烈建议在main包中使用log.Fatal来记录错误，这样就可以由log来结束程序。
+
+## 带mutex的struct必须是指针receivers
+
+如果你定义的struct中带有mutex,那么你的receivers必须是指针
