@@ -2,19 +2,24 @@
 
 ## 目录
 
-- [Prefer to struct](#prefer-to-struct)
-- [Package naming](#package-naming)
-- [Empty string check](#empty-string-check)
-- [Interfaces](#interfaces)
-- [Error strings](#error-strings)
+- [Go 编码规范](#go-编码规范)
+	- [目录](#目录)
+	- [Prefer to struct](#prefer-to-struct)
+	- [Package naming](#package-naming)
+	- [Empty string check](#empty-string-check)
+	- [Interfaces](#interfaces)
+	- [Error strings](#error-strings)
 - [Handle errors](#handle-errors)
-- [Imports](#imports)
-- [Goroutine lifetimes](#goroutine-lifetimes)
-- [In-band errors](#in-band-errors)
-- [Use consistent spelling of certain words](#use-consistent-spelling-of-certain-words)
-- [Group similar declarations](#group-similar-declarations)
-- [Reduce scope of variables](#reduce-scope-of-variables)
-- [Unnecessary else](#unnecessary-else)
+	- [Imports](#imports)
+	- [Goroutine lifetimes](#goroutine-lifetimes)
+	- [In-band errors](#in-band-errors)
+	- [Use consistent spelling of certain words](#use-consistent-spelling-of-certain-words)
+	- [Group similar declarations](#group-similar-declarations)
+	- [Reduce scope of variables](#reduce-scope-of-variables)
+	- [Unnecessary else](#unnecessary-else)
+	- [Variable Names](#variable-names)
+		- [example](#example)
+			- [ID](#id)
 
 
 ## Prefer to struct
@@ -390,3 +395,26 @@ if b {
 ```
 
 参考：https://github.com/uber-go/guide/blob/master/style.md#unnecessary-else
+
+
+## Variable Names
+Variable names in Go should be short rather than long. This is especially true for local variables with limited scope. Prefer c to lineCount. Prefer i to sliceIndex.
+
+The basic rule: the further from its declaration that a name is used, the more descriptive the name must be. For a method receiver, one or two letters is sufficient. Common variables such as loop indices and readers can be a single letter (i, r). More unusual things and global variables need more descriptive names.
+
+### example
+
+#### ID
+Do this:
+```go
+var UUID string
+var ID string
+```
+Don't do this:
+```go
+var uuid string
+var Uuid string
+var Id string
+```
+
+参考：https://github.com/golang/go/wiki/CodeReviewComments#variable-names
