@@ -9,7 +9,7 @@
 	- [Empty string check](#empty-string-check)
 	- [Interfaces](#interfaces)
 	- [Error strings](#error-strings)
-- [Handle errors](#handle-errors)
+    - [Handle errors](#handle-errors)
 	- [Imports](#imports)
 	- [Goroutine lifetimes](#goroutine-lifetimes)
 	- [In-band errors](#in-band-errors)
@@ -18,8 +18,6 @@
 	- [Reduce scope of variables](#reduce-scope-of-variables)
 	- [Unnecessary else](#unnecessary-else)
 	- [Variable Names](#variable-names)
-		- [example](#example)
-			- [ID](#id)
 
 
 ## Prefer to struct
