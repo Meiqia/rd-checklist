@@ -2,22 +2,20 @@
 
 ## 目录
 
-- [Go 编码规范](#go-编码规范)
-	- [目录](#目录)
-	- [Prefer to struct](#prefer-to-struct)
-	- [Package naming](#package-naming)
-	- [Empty string check](#empty-string-check)
-	- [Interfaces](#interfaces)
-	- [Error strings](#error-strings)
-    - [Handle errors](#handle-errors)
-	- [Imports](#imports)
-	- [Goroutine lifetimes](#goroutine-lifetimes)
-	- [In-band errors](#in-band-errors)
-	- [Use consistent spelling of certain words](#use-consistent-spelling-of-certain-words)
-	- [Group similar declarations](#group-similar-declarations)
-	- [Reduce scope of variables](#reduce-scope-of-variables)
-	- [Unnecessary else](#unnecessary-else)
-	- [Variable Names](#variable-names)
+- [Prefer to struct](#prefer-to-struct)
+- [Package naming](#package-naming)
+- [Empty string check](#empty-string-check)
+- [Interfaces](#interfaces)
+- [Error strings](#error-strings)
+- [Handle errors](#handle-errors)
+- [Imports](#imports)
+- [Goroutine lifetimes](#goroutine-lifetimes)
+- [In-band errors](#in-band-errors)
+- [Use consistent spelling of certain words](#use-consistent-spelling-of-certain-words)
+- [Group similar declarations](#group-similar-declarations)
+- [Reduce scope of variables](#reduce-scope-of-variables)
+- [Unnecessary else](#unnecessary-else)
+- [Variable Names](#variable-names)
 
 
 ## Prefer to struct
