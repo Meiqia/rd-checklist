@@ -396,7 +396,7 @@ if b {
 
 Do this:
 
-```api
+```go
 sa := []string{"a", "b", "c"}
 sb := []string{"d", "e"}
 sa = append(sa, sb...)
@@ -404,7 +404,7 @@ sa = append(sa, sb...)
 
 Don't do this
 
-```api
+```go
 sa := []string{"a", "b", "c"}
 sb := []string{"d", "e"}
 for _, item := range sb {
