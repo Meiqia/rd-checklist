@@ -36,7 +36,6 @@ Don't do this: `str_conv` `strConv`
 - https://rakyll.org/style-packages/
 
 
-
 ## Empty string check
 
 Do this:
@@ -304,93 +303,6 @@ Don't do this:
 ```
 
 参考: https://dmitri.shuralyov.com/idiomatic-go#use-consistent-spelling-of-certain-words.
-
-
-## Group similar declarations
-
-Do this:
-```go
-const (
-	a = 1
-	b = 2
-)
-
-var (
-	a = 1
-	b = 2
-)
-```
-
-Don't do this:
-```go
-const a = 1
-const b = 2
-
-var a = 1
-var b = 2
-```
-
-参考: https://github.com/uber-go/guide/blob/master/style.md#group-similar-declarations
-
-
-## Reduce scope of variables
-
-Do this:
-```go
-data, err := ioutil.ReadFile(name)
-if err != nil {
-	return err
-}
-
-if err := cfg.Decode(data); err != nil {
-	return err
-}
-
-fmt.Println(cfg)
-return nil
-```
-
-Don't do this:
-```go
-if data, err := ioutil.ReadFile(name); err == nil {
-	err = cfg.Decode(data)
-  	if err != nil {
-		return err
-  	}
-
-	fmt.Println(cfg)
-	return nil
-} else {
-	return err
-}
-```
-
-如果返回只有一个err，用一行；如果有多个，换行处理err
-
-参考: https://github.com/uber-go/guide/blob/master/style.md#reduce-scope-of-variables
-
-
-## Unnecessary else
-
-Do this:
-```go
-a := 10
-if b {
-	a = 100
-}
-```
-
-Don't do this:
-```go
-var a int
-if b {
-	a = 100
-} else {
-	a = 10
-}
-```
-
-参考：https://github.com/uber-go/guide/blob/master/style.md#unnecessary-else
 
 ## Slice append
 
