@@ -31,6 +31,8 @@ Don't do this: `str_conv` `strConv`
 - 简短而简洁
 - 不用复数
 
+**注**: 以上规则同适用于包的别名
+
 参考:
 - https://blog.golang.org/package-names
 - https://rakyll.org/style-packages/
