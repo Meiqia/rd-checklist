@@ -15,6 +15,7 @@
 - [Group similar declarations](#group-similar-declarations)
 - [Reduce scope of variables](#reduce-scope-of-variables)
 - [Unnecessary else](#unnecessary-else)
+- [Always close HTTP response body](#always-close-http-response-body)
 
 
 ## Prefer to struct
@@ -392,3 +393,25 @@ if b {
 ```
 
 参考：https://github.com/uber-go/guide/blob/master/style.md#unnecessary-else
+
+## Always close HTTP response body
+
+Always Do this even if you don't read the response body:
+```go
+resp, err := http.Get("https://api.example.com")
+if err != nil {
+    return
+}
+
+defer resp.Body.Close()
+...
+```
+
+But Don't do this, cause resp variable might be nil:
+```go
+resp, err := http.Get("https://api.example.com")
+defer resp.Body.Close()
+...
+```
+
+参考:《100 Go Mistakes and How to Avoid Them》 10.5.1 - HTTP body
